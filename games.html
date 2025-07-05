@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<!-- CSS -->
+<link rel="stylesheet" href="css/style.css" />
+
+<!-- JS -->
+<script src="js/script.js"></script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jogos - SLOTMAIS</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .container {
+      padding: 2rem;
+    }
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .category-btn {
+      background-color: #333;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .category-btn:hover {
+      background-color: #555;
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .game-card {
+      background-color: #1e1e1e;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 0 8px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+
+    .game-card h4 {
+      font-size: 1rem;
+      margin: 0.5rem 0;
+      padding-bottom: 0.5rem;
+      background-color: #2c2c2c;
+    }
+
+    iframe {
+      width: 100%;
+      height: 200px;
+      border: none;
+      border-top: 1px solid #333;
+      /* Melhora segurança */
+      allowfullscreen;
+      allow="fullscreen; autoplay; encrypted-media";
+    }
+
+    .support-btn {
+      display: block;
+      text-align: center;
+      margin: 2rem auto 0;
+      background-color: #007bff;
+      color: white;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <h2 style="text-align:center; margin-bottom: 2rem;">Jogue seus Games Favoritos no SLOTMAIS</h2>
+
+    <!-- Navegação por categorias -->
+    <div class="categories">
+      <button class="category-btn" onclick="filterCategory('all')">Todos</button>
+      <button class="category-btn" onclick="filterCategory('slots')">Slots</button>
+      <button class="category-btn" onclick="filterCategory('crash')">Crash</button>
+      <button class="category-btn" onclick="filterCategory('roulette')">Roleta</button>
+      <button class="category-btn" onclick="filterCategory('blackjack')">Blackjack</button>
+    </div>
+
+    <!-- Grade de jogos -->
+    <div class="game-grid" id="gameGrid">
+
+      <!-- Exemplo de jogo Slot -->
+      <div class="game-card" data-category="slots">
+        <iframe src="https://playfiver.net/game/space-xy "></iframe>
+        <h4>Space XY</h4>
+      </div>
+
+      <!-- Exemplo de jogo Crash -->
+      <div class="game-card" data-category="crash">
+        <iframe src="https://playfiver.net/game/crash-game "></iframe>
+        <h4>Crash Game</h4>
+      </div>
+
+      <!-- Exemplo de jogo Roulette -->
+      <div class="game-card" data-category="roulette">
+        <iframe src="https://playfiver.net/game/roulette "></iframe>
+        <h4>European Roulette</h4>
+      </div>
+
+      <!-- Exemplo de jogo Blackjack -->
+      <div class="game-card" data-category="blackjack">
+        <iframe src="https://playfiver.net/game/blackjack "></iframe>
+        <h4>Blackjack Classic</h4>
+      </div>
+
+      <!-- Adicione mais jogos aqui conforme receber da Play Fiver -->
+
+    </div>
+
+    <!-- Botão de suporte opcional com base na info extraída -->
+    <button class="support-btn" onclick="window.open('https://t.me/playfiver ', '_blank')">
+      📩 Fale com a PlayFiver no Telegram
+    </button>
+
+  </div>
+
+  <script>
+    // Função para filtrar jogos por categoria
+    function filterCategory(category) {
+      const games = document.querySelectorAll('.game-card');
+      games.forEach(game => {
+        if (category === 'all' || game.getAttribute('data-category') === category) {
+          game.style.display = 'block';
+        } else {
+          game.style.display = 'none';
+        }
+      });
+    }
+
+    // Carregar todos por padrão
+    window.onload = () => filterCategory('all');
+  </script>
+
+</body>
+</html>

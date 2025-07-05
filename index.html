@@ -1,0 +1,293 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SLOTMAIS</title>
+
+  <!-- Font Awesome para ícones -->
+  <script src="https://kit.fontawesome.com/a076d05399.js " crossorigin="anonymous"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #121212;
+      color: #fff;
+      padding-bottom: 70px; /* Espaço para o menu inferior */
+    }
+
+    .header {
+      background: linear-gradient(90deg, #1e1e1e, #2c2c2c);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ffcc00;
+    }
+
+    .nav {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav a,
+    .btn-login,
+    .btn-register {
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .nav a {
+      color: #ccc;
+    }
+
+    .nav a:hover {
+      color: #ffcc00;
+    }
+
+    .btn-login {
+      background-color: transparent;
+      border: 2px solid #ffcc00;
+      color: #ffcc00;
+    }
+
+    .btn-login:hover {
+      background-color: #ffcc00;
+      color: #000;
+    }
+
+    .btn-register {
+      background-color: #ffcc00;
+      color: #000;
+      border: none;
+    }
+
+    .btn-register:hover {
+      background-color: #e6b800;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: url('https://via.placeholder.com/1200x400 ') center/cover no-repeat;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      background-color: #ffcc00;
+      color: #000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-primary:hover {
+      background-color: #e6b800;
+    }
+
+    /* Seção de Jogos */
+    .games-api {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .games-api h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    #game-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .game-item {
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+    }
+
+    .game-item:hover {
+      transform: scale(1.05);
+    }
+
+    .game-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .game-item .game-title {
+      padding: 10px;
+      font-size: 0.95rem;
+      font-weight: bold;
+    }
+
+    /* Menu Inferior Fixo */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #1e1e1e;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 60px;
+      border-top: 2px solid #333;
+      z-index: 1000;
+    }
+
+    .bottom-nav a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 12px;
+      text-align: center;
+      transition: color 0.3s;
+    }
+
+    .bottom-nav a:hover {
+      color: #ffcc00;
+    }
+
+    .bottom-nav i {
+      font-size: 20px;
+      margin-bottom: 4px;
+      display: block;
+      transition: transform 0.3s;
+    }
+
+    .bottom-nav a:hover i {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="logo">🎰 SLOTMAIS</div>
+  <nav class="nav">
+    <a href="#">Início</a>
+    <a href="#">Jogos</a>
+    <a href="#">Promoções</a>
+    <a href="#">Suporte</a>
+    <button onclick="location.href='login.html'" class="btn-login">Login</button>
+    <button onclick="location.href='register.html'" class="btn-register">Cadastro</button>
+  </nav>
+</header>
+
+<!-- Banner Principal -->
+<section class="hero">
+  <h1>Bem-vindo ao SLOTMAIS</h1>
+  <p>Jogue os melhores slots online com segurança e diversão!</p>
+  <button onclick="scrollToGames()" class="btn-primary">Ver Jogos</button>
+</section>
+
+<!-- Seção de Jogos -->
+<section class="games-api" id="games">
+  <h2>Carregando jogos...</h2>
+  <div id="game-container">
+    <p>Carregando jogos...</p>
+  </div>
+</section>
+
+<!-- Menu Inferior Fixo -->
+<div class="bottom-nav">
+  <a href="index.html">
+    <i class="fas fa-home"></i>Início
+  </a>
+  <a href="jogos.html">
+    <i class="fas fa-gamepad"></i>Jogos
+  </a>
+  <a href="deposito.html">
+    <i class="fas fa-credit-card"></i>Depósito
+  </a>
+  <a href="perfil.html">
+    <i class="fas fa-user"></i>Perfil
+  </a>
+</div>
+
+<script>
+  function scrollToGames() {
+    document.getElementById('games').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Lista de jogos com nome, imagem e URL
+  const games = [
+    {
+      name: "Fortune Tiger",
+      image: "https://rcf-img-usa.img2058west008en08.com/gpmaster/49ac191a-8de3-4a17-937b-15b691588a1f.png ",
+      url: "https://api.playfivers.com/98/index.html?l=pt&btt=1&ot=1efcad5c-f29e-6a26-bf54-96d03b3f4caf&ops=74192644-b34f-4bed-8943-bb87da419ee9&jurisdiction=CW"
+    },
+    {
+      name: "Fortune Ox",
+      image: " https://rcf-img-usa.img2058west008en08.com/gpmaster/ff4b5977-3275-4be4-8a07-60e460b9aeb2.png ",
+      url: "https://api.playfivers.com/68/index.html?l=pt&btt=1&ot=1efcad5c-f29e-6a26-bf54-96d03b3f4caf&ops=74192644-b34f-4bed-8943-bb87da419ee9&jurisdiction=CW"
+    }
+    // Adicione mais jogos conforme necessário
+  ];
+
+  window.onload = () => {
+    const gameContainer = document.getElementById("game-container");
+    gameContainer.innerHTML = "<p>Carregando jogos...</p>";
+
+    if (!gameContainer) {
+      console.error("Elemento game-container não encontrado.");
+      return;
+    }
+
+    setTimeout(() => {
+      gameContainer.innerHTML = ""; // Limpa placeholder
+
+      games.forEach(game => {
+        const div = document.createElement("div");
+        div.className = "game-item";
+        div.innerHTML = `
+          <a href="${game.url}" target="_blank">
+            <img src="${game.image.trim()}" alt="${game.name}">
+            <div class="game-title">${game.name}</div>
+          </a>
+        `;
+        gameContainer.appendChild(div);
+      });
+    }, 500); // Pequeno delay para carregar depois do DOM
+  };
+</script>
+
+</body>
+</html>
